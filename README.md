@@ -20,6 +20,10 @@
 |------|----|-------|
 |title|string|null: false|
 |detail|text|null: true|
+|deadline_at|datetime|null:false|
+|deadline|boolean|default: false, null: false|
+|finised_at|datetime|null:false|
+|finished|boolean|default: false, null: false|
 
 ### Association
 - has_one :owners
@@ -45,6 +49,7 @@
 |game_id|integer|null: false, foreign_key: true|
 |player_id|integer|null: false, foreign_key: true|
 |point|integer|null:false|
+|added|boolean|default: false, null: false|
 
 ### Association
 - belongs_to :user
@@ -63,6 +68,17 @@
 ### Association
 - belongs_to :game
 - has_many :bets
+- has_one :wins
+
+## winsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|player_id|integer|null: false, foreign_key: true|
+|wined|boolean|default: false, null: false|
+
+### Association
+- belongs_to :player
 
 ## memberテーブル
 
