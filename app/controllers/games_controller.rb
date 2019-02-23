@@ -6,6 +6,10 @@ class GamesController < ApplicationController
   def new
     @game = Game.new
     @game.players.build
+    @odds_select = {}
+    for num in 1..10 do
+      @odds_select[num.to_s] = num
+    end
   end
 
   def create

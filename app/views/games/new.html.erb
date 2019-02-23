@@ -26,11 +26,11 @@
                 <%= form.fields_for :players do |fin| %>
                   <div class="col-8">
                     <%= fin.label :name, :プレイヤー名 %>
-                    <%= fin.text_field :name, { class: "form-control", id: "player-name"} %>
+                    <%= fin.text_field :name, class: "form-control", id: "player-name" %>
                   </div>
                   <div class="col-3">
                     <%= fin.label :odds, :オッズ %>
-                    <%= fin.number_field :odds, { class: "form-control", id: "player-odds" } %>
+                    <%= fin.select :odds, @odds_select, {} , {class: "form-control", id: "player-odds"} %>
                   </div>
                   <div class="col-1 d-flex align-items-end">
                     <button type="button" class="btn btn-primary add-btn" id="add-btn">追加</button>
