@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190222155414) do
+ActiveRecord::Schema.define(version: 20190223111927) do
+
+  create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                                     null: false
+    t.text     "detail",      limit: 65535
+    t.datetime "closed_at",                                 null: false
+    t.boolean  "is_closed",                 default: false, null: false
+    t.boolean  "is_finished",               default: false, null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id"
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_owners_on_game_id", using: :btree
+    t.index ["user_id"], name: "index_owners_on_user_id", using: :btree
+  end
+
+  create_table "players", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "game_id", null: false
+    t.string  "name",    null: false
+    t.integer "odds",    null: false
+    t.index ["game_id"], name: "index_players_on_game_id", using: :btree
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                                 default: "", null: false
@@ -26,4 +50,7 @@ ActiveRecord::Schema.define(version: 20190222155414) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "owners", "games"
+  add_foreign_key "owners", "users"
+  add_foreign_key "players", "games"
 end
