@@ -20,10 +20,10 @@
 |------|----|-------|
 |title|string|null: false|
 |detail|text|null: true|
-|deadline_at|datetime|null:false|
-|deadline|boolean|default: false, null: false|
+|closed_at|datetime|null:false|
+|is_closed|boolean|default: false, null: false|
 |finised_at|datetime|null:false|
-|finished|boolean|default: false, null: false|
+|is_finished|boolean|default: false, null: false|
 
 ### Association
 - has_one :owners
@@ -35,8 +35,8 @@
 ## ownersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|game_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|game_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -45,11 +45,11 @@
 ##betsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|game_id|integer|null: false, foreign_key: true|
-|player_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|game_id|references|null: false, foreign_key: true|
+|player_id|references|null: false, foreign_key: true|
 |point|integer|null:false|
-|added|boolean|default: false, null: false|
+|is_added|boolean|default: false, null: false|
 
 ### Association
 - belongs_to :user
@@ -60,7 +60,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|game_id|integer|null: false, foreign_key: true|
+|game_id|references|null: false, foreign_key: true|
 |name|string|null: false|
 |image|string|null: true|
 |odds|integer|null: false|
@@ -74,7 +74,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|player_id|integer|null: false, foreign_key: true|
+|player_id|references|null: false, foreign_key: true|
 |wined|boolean|default: false, null: false|
 
 ### Association
@@ -84,8 +84,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|game_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|game_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :game

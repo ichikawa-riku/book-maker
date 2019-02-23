@@ -1,0 +1,50 @@
+<div class="container align-items-center">
+  <div class="row new-game-page">
+    <div class="w-100">
+      <header>
+        <h1 class="logo text-center">BOOK MAKER</h1>
+        <h2 class="text-center">ゲーム作成</h2>
+        <%= link_to "HOMEに戻る", root_path %>
+        <hr>
+      </header>
+        <%= form_for @game do |form| %>
+          <div class="form-group">
+            <%= form.label :title, :タイトル %></br>
+            <%= form.text_field :title, { class: "form-control" } %>
+          </div>
+          <div class="form-group">
+            <%= form.label :detail, :詳細 %></br>
+            <%= form.text_area :detail, { class: "form-control" } %>
+          </div>
+          <div class="form-group position-relative">
+            <%= form.label :closed_at, :投票締め切り時間 %></br>
+              <%= form.text_field :closed_at, class: "form-control datetimepicker-input", id: "closed_at" , data: {toggle: "datetimepicker", target: "#closed_at"} %>
+          </div>
+          <div id="add_player">
+            <div class="form-group">
+              <div class="row">
+                <%= form.fields_for :players do |fin| %>
+                  <div class="col-8">
+                    <%= fin.label :name, :プレイヤー名 %>
+                    <%= fin.text_field :name, class: "form-control", id: "player-name" %>
+                  </div>
+                  <div class="col-3">
+                    <%= fin.label :odds, :オッズ %>
+                    <%= fin.select :odds, @odds_select, {} , {class: "form-control", id: "player-odds"} %>
+                  </div>
+                  <div class="col-1 d-flex align-items-end">
+                    <button type="button" class="btn btn-primary add-btn" id="add-btn">追加</button>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div id="added_player">
+          </div>
+          <div class="form-group">
+            <%= form.submit "作成", class: "btn btn-primary btn-block btn-lg"%>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
