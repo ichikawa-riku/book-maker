@@ -1,12 +1,37 @@
-<div class="card mb-3">
-<div class="card-body">
-  <div>
-    <h5 class="card-title"><%= game.title %></h5>
+<div class="card mb-3 bg-dark text-white">
+  <div class="card-body">
+    <div>
+      <h5 class="card-title"><%= game.title %></h5>
+    </div>
+    <div>
+      <h7>投票締め切りまで</h7><h6 class="count_down"><%= game.closed_at.to_f %></h6>
+    </div>
+    <div class="px-3">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">プレイヤーネーム</th>
+            <th scope="col">オッズ</th>
+            <th scope="col">トータル</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% index = 1 %>
+          <% game.players.each do |player| %>
+            <tr>
+              <th scope="row"><%= index %></th>
+              <td><%= player.name %></td>
+              <td><%= player.odds %></td>
+              <td>1000</td>
+            </tr>
+            <% index += 1 %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-end px-3">
+      <button type="button" class="btn btn-light btn-lg">BET NOW</button>
+    </div>
   </div>
-  <div>
-    <h6>残り：10日 00:00:00</h6>
-  </div>
-  <p class="card-text"><%= game.detail %></p>
-  <a href="#" class="btn btn-primary">詳細</a>
-</div>
 </div>
