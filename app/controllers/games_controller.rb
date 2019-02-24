@@ -1,8 +1,9 @@
 class GamesController < ApplicationController
+
   def index
-    @games = Game.all.order('closed_at DESC').page(params[:page]).per(10)
-    @now = Time.current
+    @games = Game.incoming.order('closed_at ASC').page(params[:page]).per(10)
   end
+
   def new
     @game = Game.new
     @game.players.build
