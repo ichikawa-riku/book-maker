@@ -14,6 +14,7 @@ class GamesController < ApplicationController
   end
 
   def create
+    binding.pry
     @game = Game.new(game_params)
     @game.save
     redirect_to root_path
@@ -21,7 +22,7 @@ class GamesController < ApplicationController
 
 private
   def game_params
-    params.require(:game).permit(:title, :detail, :closed_at, players_attributes: [:name, :odds])
+    params.require(:game).permit(:title, :detail, :closed_at, players_attributes: [:name, :odds]).merge(owner_attributes: {user_id: current_user.id,})
   end
 
 end

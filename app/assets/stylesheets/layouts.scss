@@ -2,3 +2,15 @@
   font-family: 'Chonburi', cursive;
 }
 
+.bgi {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-image: url('/PP150719550I9A0224.jpg');
+  background-size: cover;
+}
+
+.bg-mask {
+  min-height: 100vh;
+  min-width: 100vw;
+  background: rgba(255,255,255,0.3);
+}

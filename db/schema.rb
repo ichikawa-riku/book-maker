@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190223111927) do
+ActiveRecord::Schema.define(version: 20190224005828) do
+
+  create_table "bets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.integer  "player_id"
+    t.integer  "points",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_bets_on_game_id", using: :btree
+    t.index ["player_id"], name: "index_bets_on_player_id", using: :btree
+    t.index ["user_id"], name: "index_bets_on_user_id", using: :btree
+  end
 
   create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                                     null: false
@@ -50,6 +62,9 @@ ActiveRecord::Schema.define(version: 20190223111927) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "bets", "games"
+  add_foreign_key "bets", "players"
+  add_foreign_key "bets", "users"
   add_foreign_key "owners", "games"
   add_foreign_key "owners", "users"
   add_foreign_key "players", "games"

@@ -1,11 +1,13 @@
 $(document).on('turbolinks:load', function(){
-    var targets = [];
+    var targets = new Array;
     var path = location.pathname;
+    console.log(targets)
     if(path == "/"){
       if (targets.length === 0){
         $(".count_down").each(function(index, element){
           var closedAt = (parseFloat($(element).text())) * 1000;
           targets.push(closedAt)
+          setInterval(function(){ countDown(targets) },10)
         });
       }
       function addZero(value){
@@ -36,8 +38,5 @@ $(document).on('turbolinks:load', function(){
           $(this).text(text);
         });
       }
-
-      setInterval(function(){ countDown(targets) },10)
-
     }
 });
