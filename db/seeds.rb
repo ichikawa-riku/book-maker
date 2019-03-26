@@ -9,7 +9,6 @@
     title: player1 + " vs " + player2,
     closed_at: deadline_at,
     is_closed: false,
-    finished_at: deadline_at.tomorrow,
     is_finished: false
     )
   Owner.create!(
