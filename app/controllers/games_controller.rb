@@ -2,6 +2,8 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.incoming.order('closed_at ASC').page(params[:page]).per(10)
+    @points = Point.where(user_id: current_user.id).order("created_at DESC")
+    @balance = Point.where(user_id: current_user.id).sum(:point)
   end
 
   def new

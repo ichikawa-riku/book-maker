@@ -8,6 +8,7 @@ class BetsController < ApplicationController
   def create
     @bet = @game.bets.new(bet_params)
     @bet.save
+    point = Point.create(user_id: current_user.id, bet_id: @bet.id, point: -(@bet.points), reason: "ベット")
     redirect_to root_path
   end
 
