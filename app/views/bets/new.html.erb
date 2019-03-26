@@ -16,22 +16,22 @@
                   <th scope="col">#</th>
                   <th scope="col">Player</th>
                   <th scope="col">Odds</th>
-                  <th scope="col">BET</th>
                 </tr>
               </thead>
               <tbody>
-                <% i = 0 %>
                 <% @players.each do |player| %>
-                <% i += 1 %>
                   <tr>
                     <th scope="row"><%= form.radio_button :player_id, player.id %></th>
                     <td><%= player.name %></td>
                     <td><%= player.odds %></td>
-                    <td><%= form.number_field :points, { class: "form-control" } %></td>
                   </tr>
                 <% end %>
               </tbody>
             </table>
+            <div class="container">
+              <%= form.label :points, "BETするポイント数を入力してください" %>
+              <%= form.number_field :points, { class: "form-control" } %>
+            </div>
           </div>
         <div class="form-group" >
         <%= form.submit "BET IN", class: "btn btn-primary btn-block btn-lg"%>

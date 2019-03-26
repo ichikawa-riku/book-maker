@@ -13,7 +13,6 @@ class BetsController < ApplicationController
 
 private
   def bet_params
-    binding.pry
     params.require(:bet).permit(:player_id, :points).merge(user_id: current_user.id)
   end
 
