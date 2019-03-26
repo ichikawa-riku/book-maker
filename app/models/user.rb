@@ -4,4 +4,5 @@ class User < ApplicationRecord
   has_many :games, through: :owner
   has_many :owner
   has_many :bets
+  has_many :points
 end

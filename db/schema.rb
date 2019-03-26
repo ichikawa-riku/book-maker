@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190224005828) do
+ActiveRecord::Schema.define(version: 20190326101222) do
 
   create_table "bets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(version: 20190224005828) do
     t.index ["game_id"], name: "index_players_on_game_id", using: :btree
   end
 
+  create_table "points", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "bet_id"
+    t.integer  "point"
+    t.text     "reason",     limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["bet_id"], name: "index_points_on_bet_id", using: :btree
+    t.index ["user_id"], name: "index_points_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                                 default: "", null: false
     t.text     "avater",                 limit: 65535,              null: false
@@ -68,4 +79,6 @@ ActiveRecord::Schema.define(version: 20190224005828) do
   add_foreign_key "owners", "games"
   add_foreign_key "owners", "users"
   add_foreign_key "players", "games"
+  add_foreign_key "points", "bets"
+  add_foreign_key "points", "users"
 end
